@@ -44,9 +44,7 @@ public class TeacherServiceImpl implements TeacherService {
     public List<TeacherDTO> getAllTeachers() {
 
         List<Teacher> teachers = teacherRepository.findAll();
-        if(teachers.isEmpty()){
-            throw new NotFoundException("Teacher's list is empty");
-        }
+        if (teachers.isEmpty()) throw new NotFoundException("Teacher list is empty");
 
         return teachers.stream().map(teacher -> modelMapper.map(teacher, TeacherDTO.class)).collect(Collectors.toList());
     }
