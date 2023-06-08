@@ -50,19 +50,26 @@ public class StudentServiceImpl implements StudentService {
         return newStudentDtos;
     }
 
+    // double highestRank(List<Student>)
+    public double getHighestRank(List<Student> students){
+        return students.stream().max( (s1, s2) -> s1.getMarks().compareTo(s2.getMarks())).get().getMarks();
+    }
+
+    //
+
     // recalculate rank
     @Override
     public List<Student> calculateRank(List<Student> newStudent) {
-        double highest = newStudent.stream().max((s1, s2) -> s1.getMarks().compareTo(s2.getMarks())).get().getMarks();
+        double highest = getHighestRank(newStudent);
 
         // list of students having marks smaller than given dto list(highest marks)
         List<Student> students = studentRepository.findAllByMarksLessThanEqualOrderByMarksDesc(highest);
 
-        // if students list have no marks smaller than dto's highest marks
+        // if students list have no marks smaller than dto's highest marks - for getting rank
         Student filterStudent = students.isEmpty() ? studentRepository.findFirstByOrderByMarks() : null;
 
         int ifRank = filterStudent != null ? filterStudent.getStudentRank() + 1 : 1; // if both list is empty than rank=1
-        int j = (students.isEmpty() ? ifRank : students.get(0).getStudentRank());
+        int j = (students.isEmpty() ? ifRank : students.get(0).getStudentRank()); // set j according to last rank
 
         students.addAll(newStudent);
         students.sort((s1, s2) -> s2.getMarks().compareTo(s1.getMarks()));

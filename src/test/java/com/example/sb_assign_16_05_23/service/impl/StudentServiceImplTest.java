@@ -34,7 +34,7 @@ class StudentServiceImplTest {
     private StudentServiceImpl studentService;
 
     @Test
-    void getAllStudents_no_condtions() {
+    void getAllStudents_no_condtions_test() {
         Student student1 = Student.builder()
                 .studentName("Tanya").studentRank(3).marks(459.90).id(937L).build();
 
@@ -50,12 +50,43 @@ class StudentServiceImplTest {
 
     //    @DisplayName("Empty List - getAllConditions")
     @Test
-    void getAllStudents_empty_ist(){
+    void getAllStudents_empty_istt_test(){
         when(studentRepository.findAll()).thenReturn(new ArrayList<>());
 
         assertThatThrownBy(() -> studentService.getAllStudents())
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage(Constants.EMPTY_LIST);
     }
+
+    // highestRankTest()
+/*    @Test
+    void getHighestRank_no_conditions_test(){
+        Student student1 = Student.builder()
+                .studentName("Tanya").studentRank(3).marks(459.90).id(937L).build();
+
+        Student student2 = Student.builder()
+                .studentName("Manushi").studentRank(1).marks(600.0).id(2875L).build();
+
+    }*/
+
+
+    /* calculateRank()
+    * studentRepository.findAllByMarksLessThanEqualOrderByMarksDesc(highest)
+    * studentRepository.findFirstByOrderByMarks()
+    */
+/*    void calculateRank_basic_test(){
+        Student student1 = Student.builder()
+                .studentName("Tanya").studentRank(2).marks(459.90).id(937L).build();
+
+        Student student2 = Student.builder()
+                .studentName("Manushi").studentRank(1).marks(598.0).id(2875L).build();
+
+        double highest = 600;
+
+        when(studentRepository.findAllByMarksLessThanEqualOrderByMarksDesc(highest)).thenReturn(List.of(student2, student1));
+        when(studentRepository.findFirstByOrderByMarks()).thenReturn(student1);
+
+
+    }*/
 
 }
