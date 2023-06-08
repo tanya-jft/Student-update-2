@@ -1,14 +1,14 @@
 package com.example.sb_assign_16_05_23.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Student {
 
     //here we are creating an entity "student" which will create a table in the DB by the same name

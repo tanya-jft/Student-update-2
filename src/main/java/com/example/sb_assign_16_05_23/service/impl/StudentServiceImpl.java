@@ -5,32 +5,36 @@ import com.example.sb_assign_16_05_23.entity.Student;
 import com.example.sb_assign_16_05_23.errors.NotFoundException;
 import com.example.sb_assign_16_05_23.repository.StudentRepository;
 import com.example.sb_assign_16_05_23.service.StudentService;
+import com.example.sb_assign_16_05_23.util.Constants;
+import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.bcel.Const;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
-    StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+    private final ModelMapper mapper;
 
-    @Autowired
-    ModelMapper mapper;
 
     @Override
     public List<StudentDTO> getAllStudents() {
         List<Student> students = studentRepository.findAll();
-        if (students.isEmpty()) throw new NotFoundException("Student list is empty");
+        if (students.isEmpty()) throw new NotFoundException(Constants.EMPTY_LIST);
 
         return students.stream().map(student -> mapper.map(student, StudentDTO.class)).toList();
     }
 
 
-    @Override
+    @Override // register all students
     public List<StudentDTO> registerStudentList(List<StudentDTO> studentDtos) {
         List<Student> newStudent = studentDtos.stream().map(s -> mapper.map(s, Student.class)).toList();
         List<Student> students = calculateRank(newStudent);
