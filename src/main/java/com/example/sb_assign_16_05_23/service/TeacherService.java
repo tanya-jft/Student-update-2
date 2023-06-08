@@ -7,5 +7,6 @@ public interface TeacherService {
       List<TeacherDTO> setTeachers(TeacherDTO teacherData);
       List<TeacherDTO> setAll(List<TeacherDTO> teacherData);
 
+    String deleteTeacherById(Long id);
 }
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,5 +64,14 @@ public class TeacherServiceImpl implements TeacherService {
 
         return teacherList.stream().map(teacher -> modelMapper.map(teacher, TeacherDTO.class)).toList();
 
+    }
+
+    @Override
+    public String deleteTeacherById(Long id) {
+        Optional<Teacher> isSubjectExist = teacherRepository.findById(id);
+        if(isSubjectExist.isPresent()) teacherRepository.delete(isSubjectExist.get());
+        String msg = (!isSubjectExist.isPresent()) ? ("Id " + id + " does not exist.") : ("Id " + id + " deleted");
+
+        return msg;
     }
 }

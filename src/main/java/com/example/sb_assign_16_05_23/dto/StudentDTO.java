@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.Range;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(value = {"id"}, allowGetters = true) // ignore the property while saving, but allow getter for those properties
+//@JsonIgnoreProperties(value = {"id"}, allowGetters = true) // ignore the property while saving, but allow getter for those properties
 public class StudentDTO {
     //the fields of DTO should match the entity's field
     Long id;

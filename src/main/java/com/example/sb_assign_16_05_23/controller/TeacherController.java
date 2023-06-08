@@ -50,5 +50,15 @@ public class TeacherController {
       }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseDTO deleterTeacherById(@PathVariable Long id){
+        return ResponseDTO.<String>builder()
+                .data(teacherService.deleteTeacherById(id))
+                .message(Constants.DELETE_MSG)
+                .status(HttpStatus.OK.value())
+                .build();
+    }
+
+
 
 }

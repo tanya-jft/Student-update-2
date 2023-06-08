@@ -7,6 +7,6 @@ public class Constants {
 
     public static String CREATED = "Created";
 
-
+    public static String DELETE_MSG = "Deleted";
     public static String BAD_REQUEST_MSG = "Bad Request";
 }

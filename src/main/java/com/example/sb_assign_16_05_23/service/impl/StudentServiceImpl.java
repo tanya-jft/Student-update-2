@@ -98,6 +98,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public String deleteStudentById(Long id) {
+        Optional<Student> isStudentExist = studentRepository.findById(id);
+        if(isStudentExist.isPresent()) studentRepository.delete(isStudentExist.get());
+        String msg = (!isStudentExist.isPresent()) ? ("Id " + id + " does not exist.") : ("Id " + id + " deleted");
+
+        return msg;
+    }
+
+    @Override
     public List<StudentDTO> sortAccordingToRank() {
         List<Student> stud=studentRepository.findAllByOrderByStudentRank();
         if (stud.isEmpty())

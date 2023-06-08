@@ -65,5 +65,14 @@ public class StudentController {
                 .build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseDTO deleteStudentById(@PathVariable Long id){
+        return ResponseDTO.<String>builder()
+                .data(studentService.deleteStudentById(id))
+                .message(Constants.DELETE_MSG)
+                .status(HttpStatus.OK.value())
+                .build();
+    }
+
 }
 

@@ -1,12 +1,15 @@
 package com.example.sb_assign_16_05_23.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
+@Audited
 @Entity
-@Data
+@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student {
@@ -27,6 +30,7 @@ public class Student {
     @Column(name = "marks")
     private Double marks;
 
+    @NotAudited
     @Column(name = "student_rank")
     private Integer studentRank;
 

@@ -18,5 +18,6 @@ public interface StudentService {
 
     List<StudentDTO> sortAccordingTo(String sortField);
 
+    String deleteStudentById(Long id);
 }
 
