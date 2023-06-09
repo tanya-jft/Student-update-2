@@ -1,12 +1,9 @@
 package com.example.sb_assign_16_05_23.service.impl;
 
-import com.example.sb_assign_16_05_23.dto.StudentDTO;
 import com.example.sb_assign_16_05_23.entity.Student;
 import com.example.sb_assign_16_05_23.errors.NotFoundException;
 import com.example.sb_assign_16_05_23.repository.StudentRepository;
 import com.example.sb_assign_16_05_23.util.Constants;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,8 +14,9 @@ import org.modelmapper.ModelMapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class StudentServiceImplTest {
@@ -50,7 +48,7 @@ class StudentServiceImplTest {
 
     //    @DisplayName("Empty List - getAllConditions")
     @Test
-    void getAllStudents_empty_istt_test(){
+    void getAllStudents_empty_istt_test() {
         when(studentRepository.findAll()).thenReturn(new ArrayList<>());
 
         assertThatThrownBy(() -> studentService.getAllStudents())
@@ -71,9 +69,9 @@ class StudentServiceImplTest {
 
 
     /* calculateRank()
-    * studentRepository.findAllByMarksLessThanEqualOrderByMarksDesc(highest)
-    * studentRepository.findFirstByOrderByMarks()
-    */
+     * studentRepository.findAllByMarksLessThanEqualOrderByMarksDesc(highest)
+     * studentRepository.findFirstByOrderByMarks()
+     */
 /*    void calculateRank_basic_test(){
         Student student1 = Student.builder()
                 .studentName("Tanya").studentRank(2).marks(459.90).id(937L).build();
