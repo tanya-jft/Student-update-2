@@ -2,10 +2,12 @@ package com.example.sb_assign_16_05_23.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
+@Audited
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,6 +29,7 @@ public class Student {
     @Column(name = "marks")
     private Double marks;
 
+    @NotAudited
     @Column(name = "student_rank")
     private Integer studentRank;
 
